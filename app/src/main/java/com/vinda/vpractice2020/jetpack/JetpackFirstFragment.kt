@@ -1,5 +1,6 @@
 package com.vinda.vpractice2020.jetpack
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.vinda.vpractice2020.R
+import com.vinda.vpractice2020.jetpack.viewmodule.ViewModuleActivity
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -29,7 +31,7 @@ class JetpackFirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
         view.findViewById<Button>(R.id.button_to_view_module).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_ViewModuleFragment)
+           startActivity(Intent(activity,ViewModuleActivity::class.java))
         }
     }
 }

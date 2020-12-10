@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vinda.vpractice2020.R
-import com.vinda.vpractice2020.databinding.FragmentDataBindingBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -28,6 +26,7 @@ class ViewModuleFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.button_second).setOnClickListener {
             findNavController().navigate(R.id.action_ViewModuleFragment_to_FirstFragment)
         }
+
     }
 
     override fun onClick(p0: View?) {

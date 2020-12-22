@@ -7,3 +7,7 @@ https://blog.csdn.net/leol_2/article/details/101708136
 
 ConstraintLayout 所有属性
 https://blog.csdn.net/u012254541/article/details/80626951
+
+
+2.SurfaceView绘制相关文章
+https://zhuanlan.zhihu.com/p/87332093

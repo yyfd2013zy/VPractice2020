@@ -27,5 +27,9 @@ class FirstFragment : Fragment() {
         view.findViewById<Button>(R.id.button_first).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+        view.findViewById<Button>(R.id.showDialog).setOnClickListener {
+
+        }
+
     }
 }

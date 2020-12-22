@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.vinda.vpractice2020">
 
     <application
         android:name=".base.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
+        android:appComponentFactory="yctc"
+        tools:replace="android:appComponentFactory"
         android:theme="@style/Theme.VPractice2020">
         <activity
-            android:name=".MainActivity"
+            android:name=".widget.WidgetTestActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.VPractice2020.NoActionBar">
             <intent-filter>

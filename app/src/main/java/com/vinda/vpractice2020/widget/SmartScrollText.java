@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -29,6 +30,9 @@ public class SmartScrollText extends SurfaceView implements SurfaceHolder.Callba
     final String TAG = "SmartScrollText";
 
     private DrawThread mThread = null;
+    private SmartScrollTextParams smartScrollTextParams = new SmartScrollTextParams();
+
+
 
     public SmartScrollText(Context context) {
         super(context);
@@ -52,15 +56,22 @@ public class SmartScrollText extends SurfaceView implements SurfaceHolder.Callba
 
     private void init() {
         Log.d(TAG, "init");
+        setZOrderOnTop(true);
+        setWillNotCacheDrawing(true);
+        setDrawingCacheEnabled(false);
+        setWillNotDraw(true);
         SurfaceHolder holder = getHolder();
+        holder.setFormat(PixelFormat.TRANSPARENT);
         holder.addCallback(this);
+        this.setFocusable(true);
         mThread = new DrawThread(holder);
+    }
 
+    private ObjectAnimator buildInterpolator() {
         ObjectAnimator mObjectAnimator;
         TimeInterpolator mTimeInterpolator;
-
-        mObjectAnimator = ObjectAnimator.ofFloat(null,"",0,1900);
-        mObjectAnimator.setDuration(10000);
+        mObjectAnimator = ObjectAnimator.ofFloat(null,"",0,smartScrollTextParams.getViewWidth());
+        mObjectAnimator.setDuration(20000);
         mTimeInterpolator = new LinearInterpolator();
         mObjectAnimator.setInterpolator(mTimeInterpolator);
         mObjectAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(){
@@ -70,17 +81,22 @@ public class SmartScrollText extends SurfaceView implements SurfaceHolder.Callba
                 valueAnimator.getAnimatedValue();
                 Log.d(TAG, "onAnimationUpdate-------------"+valueAnimator.getAnimatedValue());
                 mThread.setTextX((Float) valueAnimator.getAnimatedValue());
+                if ((Float)valueAnimator.getAnimatedValue() == smartScrollTextParams.getViewWidth()){
+                    buildInterpolator().start();
+                }
             }
         });
-        mObjectAnimator.start();
-
+        return mObjectAnimator;
     }
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         Log.d(TAG, "surfaceCreated");
+        smartScrollTextParams.setViewWidth(this.getWidth());
+        smartScrollTextParams.setViewHeight(this.getHeight());
         mThread.setRun(true);
         mThread.start();
+        buildInterpolator().start();
     }
 
     @Override
@@ -124,7 +140,8 @@ public class SmartScrollText extends SurfaceView implements SurfaceHolder.Callba
         public void run() {
             Log.d(TAG, "DrawThread run");
             paintText.setColor(Color.BLACK);
-            paintText.setTextSize(20);
+            paintText.setTextSize(50);
+            paintText.setAntiAlias(true);//设置抗锯齿
             while (isRun) {
                 Canvas canvas = null;
                 synchronized (mHolder) {
@@ -132,14 +149,9 @@ public class SmartScrollText extends SurfaceView implements SurfaceHolder.Callba
                         //Log.d(TAG, "Drawing-------------");
                         canvas = mHolder.lockCanvas();
                         canvas.drawColor(Color.WHITE);
-                        Paint p = new Paint();
-                        p.setColor(Color.RED);
+                        canvas.drawText("Hello Word!", textX, 50, paintText);
 
-                        Rect r = new Rect(100, 50, 300, 250);
-                        canvas.drawRect(r, p);
-                        canvas.drawText("Hello Word!", textX, 310, paintText);
-
-                        //Thread.sleep(12);// 1s绘制16次
+                        Thread.sleep(5);// 1s绘制16次
 
                     } catch (Exception e) {
                         Log.d(TAG, "throw Exception in run");

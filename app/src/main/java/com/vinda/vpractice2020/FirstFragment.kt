@@ -30,6 +30,9 @@ class FirstFragment : Fragment() {
         view.findViewById<Button>(R.id.button_to_try_catch_java).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_javaTryCatchFragment)
         }
+        view.findViewById<Button>(R.id.button_to_view_module).setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_AdapterDesignFragment)
+        }
         view.findViewById<Button>(R.id.showDialog).setOnClickListener {
 
         }

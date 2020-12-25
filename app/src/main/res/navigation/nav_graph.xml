@@ -18,6 +18,12 @@
         <action
             android:id="@+id/action_FirstFragment_to_javaTryCatchFragment"
             app:destination="@id/TryCatchJavaFragment" />
+
+        <!--跳转到 Adapter 设计模式界面-->
+        <action
+            android:id="@+id/action_FirstFragment_to_AdapterDesignFragment"
+            app:destination="@id/AdapterDesignFragment" />
+
     </fragment>
 
 
@@ -27,9 +33,9 @@
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
-        <action
+        <!--<action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/FirstFragment" />-->
     </fragment>
 
     <!--java catch fragment-->
@@ -37,10 +43,13 @@
         android:id="@+id/TryCatchJavaFragment"
         android:name="com.vinda.vpractice2020.javapractice.trycatch.TryCatchFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@xml/root_preferences">
+        tools:layout="@xml/root_preferences"/>
 
-
-    </fragment>
+    <fragment
+        android:id="@+id/AdapterDesignFragment"
+        android:name="com.vinda.vpractice2020.oopdesign.adapter.ui.login.AdatperDesignFragment"
+        android:label="AdatperDesignFragment"
+        tools:layout="@layout/fragment_adatper_design"/>
 
 
 </navigation>

@@ -51,6 +51,26 @@ public class TryCatchFragment extends PreferenceFragmentCompat {
         int out  = -1;
         try {
             out = Integer.parseInt(value);
+
+
+            //实测taycatch嵌套时候的执行顺序
+            try {
+                String value1 = "10aaaa";
+                int out1  = -1;
+                out1 = Integer.parseInt(value1);
+            }catch (NumberFormatException e) {
+                System.out.println("NumberFormatException");
+                System.out.println("NumberFormatException"+e.getMessage());
+                return;
+            } catch (Exception e) {
+                System.out.println("Exception");
+                System.out.println("Exception"+e.getMessage());
+                return;
+            } finally {
+                System.out.println("out is ");
+            }
+
+
             return;
         } catch (NumberFormatException e) {
             System.out.println("NumberFormatException");

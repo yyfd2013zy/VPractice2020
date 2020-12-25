@@ -14,7 +14,13 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <!--跳转到java try catch 验证界面-->
+        <action
+            android:id="@+id/action_FirstFragment_to_javaTryCatchFragment"
+            app:destination="@id/TryCatchJavaFragment" />
     </fragment>
+
+
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.vinda.vpractice2020.SecondFragment"
@@ -25,4 +31,16 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
+    <!--java catch fragment-->
+    <fragment
+        android:id="@+id/TryCatchJavaFragment"
+        android:name="com.vinda.vpractice2020.javapractice.trycatch.TryCatchFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@xml/root_preferences">
+
+
+    </fragment>
+
+
 </navigation>

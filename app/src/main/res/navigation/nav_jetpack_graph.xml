@@ -19,6 +19,8 @@
             android:id="@+id/action_FirstFragment_to_ViewModuleFragment"
             app:destination="@id/ViewModuleFragment" />
     </fragment>
+
+
     <fragment
         android:id="@+id/LiveDataFragment"
         android:name="com.vinda.vpractice2020.jetpack.livedata.DataBindingFragment"

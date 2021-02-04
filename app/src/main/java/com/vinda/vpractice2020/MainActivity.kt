@@ -6,21 +6,47 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.InputType
 import android.text.TextUtils
+import android.util.DisplayMetrics
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.listItems
+import com.vinda.vpractice2020.util.ImageCompresstest
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        ImageCompresstest(this).comPressImage()
+        val display = window.windowManager.defaultDisplay
+        val displayMetrics = DisplayMetrics()
+        display.getMetrics(displayMetrics)
+
+        val width = displayMetrics.widthPixels//宽度
+        val height = displayMetrics.heightPixels//高度
+        val density = displayMetrics.density//密度
+        val densityDpi = displayMetrics.densityDpi //每英寸点数(打印分辨率)
+        val xdpi = displayMetrics.xdpi//x轴物理密度
+        val ydpi = displayMetrics.ydpi//y轴物理密度
+
+        windowManager.defaultDisplay.getRealMetrics(displayMetrics)
+        val width1 = displayMetrics.widthPixels//实际宽度（含状态栏）
+        val height1 = displayMetrics.heightPixels//实际高度（含状态栏）
+        findViewById<TextView>(R.id.tv_screen_info).text = "宽度  = " + width + "\n"+ "高度 = " + height + "\n"+ "密度 = " + density + "\n" +
+                "x轴物理密度 = " + xdpi + "\n" +
+                "y轴物理密度 = " + ydpi + "\n" +
+                "实际宽度（含状态栏） = " + width1 + "\n"+
+                "实际高度 含状态栏= "+height1+ "\n"+
+                "densityDpi = "+densityDpi
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
